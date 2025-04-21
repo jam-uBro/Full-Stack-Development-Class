@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Signifia - TechFest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+        --primary: #6c5ce7;
+        --secondary: #a29bfe;
+        --dark: #1e272e;
+        --light: #f5f6fa;
+        --accent: #00cec9;
+    }
+
+    body {
+        font-family: 'Poppins', 'Segoe UI', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: var(--dark);
+        color: var(--light);
+        line-height: 1.6;
+    }
+
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 5%;
+        background: linear-gradient(135deg, var(--primary), #4834d4);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        position: relative;
+        z-index: 10;
+    }
+
+    header img {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid var(--light);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 2.5rem;
+        color: var(--light);
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        flex-grow: 1;
+        text-align: center;
+    }
+
+    .hero {
+        position: relative;
+        text-align: center;
+        padding: 100px 20px;
+        background: linear-gradient(135deg, #2d3436, #1e272e);
+        overflow: hidden;
+    }
+
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('https://signifiya.tech/img.png') center/cover no-repeat;
+        opacity: 0.1;
+        z-index: 1;
+    }
+
+    .title {
+        font-size: 3.5rem;
+        color: var(--light);
+        margin-bottom: 20px;
+        position: relative;
+        z-index: 2;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .subtitle {
+        font-size: 1.5rem;
+        color: var(--secondary);
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .events {
+        padding: 80px 5%;
+        background: var(--dark);
+        text-align: center;
+    }
+
+    .events h2 {
+        font-size: 2.5rem;
+        margin-bottom: 50px;
+        color: var(--accent);
+        position: relative;
+        display: inline-block;
+    }
+
+    .events h2::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 3px;
+        background: var(--primary);
+    }
+
+    .events ul {
+        list-style: none;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+    }
+
+    .events li {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        padding: 25px;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .events li:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        background: rgba(108, 92, 231, 0.1);
+    }
+
+    .events li img {
+        width: 100%;
+        height: 180px;
+        border-radius: 10px;
+        object-fit: contain;
+        margin-bottom: 15px;
+        transition: transform 0.3s ease;
+        background: rgba(0, 0, 0, 0.2);
+        padding: 10px;
+    }
+
+    .events li:hover img {
+        transform: scale(1.05);
+    }
+
+    .events li span {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-top: 10px;
+    }
+
+    .register {
+        padding: 80px 5%;
+        background: linear-gradient(135deg, #1e272e, #2d3436);
+        text-align: center;
+    }
+
+    .register h2 {
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+        color: var(--accent);
+    }
+
+    .register form {
+        display: flex;
+        flex-direction: column;
+        max-width: 500px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 40px;
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    input, select {
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 8px;
+        border: none;
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--light);
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    input:focus, select:focus {
+        outline: none;
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 0 0 2px var(--primary);
+    }
+
+    input::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    button {
+        padding: 15px;
+        margin: 20px 0 10px;
+        border-radius: 8px;
+        border: none;
+        background: linear-gradient(to right, var(--primary), var(--accent));
+        color: var(--light);
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    button:hover {
+        background: linear-gradient(to right, var(--accent), var(--primary));
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 206, 201, 0.4);
+    }
+
+    #response {
+        margin-top: 20px;
+        color: var(--accent);
+        font-weight: 500;
+    }
+
+    .data-list-btn {
+        display: block;
+        width: 200px;
+        margin: 40px auto;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    @keyframes slideFade {
+        0% {
+            transform: translateY(-30px);
+            opacity: 0;
+        }
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @media (max-width: 768px) {
+        header {
+            flex-direction: column;
+            padding: 20px;
+        }
+        
+        header h1 {
+            font-size: 2rem;
+            margin-top: 15px;
+        }
+        
+        .title {
+            font-size: 2.5rem;
+        }
+        
+        .events ul {
+            grid-template-columns: 1fr;
+        }
+    }
+  </style>
+</head>
+<body>
+<header>
+    <img src="https://signifiya.tech/img.png" alt="Signifiya Logo" />
+    <h1>SIGNIFIYA 2025</h1>
+</header>
+
+<section class="hero">
+    <h1 class="title">TechFest 2025</h1>
+    <p class="subtitle">Join us for the biggest technological extravaganza of the year featuring competitions, workshops, and more!</p>
+</section>
+
+<section class="events">
+    <h2>Events</h2>
+    <ul>
+      <li>
+          <img src="https://signifiya.tech/Event/1.png" alt="BGMI Event" />
+          <span>BGMI</span>
+      </li>
+      <li>
+          <img src="https://signifiya.tech/Event/2.png" alt="Valorant Event" />
+          <span>Valorant</span>
+      </li>
+      <li>
+          <img src="https://signifiya.tech/Event/3.png" alt="Efootball Event" />
+          <span>Efootball</span>
+      </li>
+      <li>
+          <img src="https://signifiya.tech/Event/13.png" alt="Tug of War Event" />
+          <span>Tug of War</span>
+      </li>
+      <li>
+          <img src="https://signifiya.tech/Event/6.png" alt="Coding Contest Event" />
+          <span>Coding Contest</span>
+      </li>
+      <li>
+          <img src="https://signifiya.tech/Event/4.png" alt="Path Follower Event" />
+          <span>Path Follower</span>
+      </li>
+      <li>
+          <img src="https://signifiya.tech/Event/15.png" alt="Circuitronics Event" />
+          <span>Circuitronics</span>
+      </li>
+      <li>
+          <img src="https://signifiya.tech/Event/14.png" alt="Coding Treasure Hunt Event" />
+          <span>Coding Treasure Hunt</span>
+      </li>
+    </ul>
+</section>
+
+<section class="register">
+    <h2>Register Now</h2>
+    <form action="/send" method="POST" id="registrationForm">
+      <input type="text" name="name" placeholder="Full Name" required />
+      <input type="email" name="email" placeholder="Email" required />
+      <input type="tel" name="phone" placeholder="Phone" required />
+      <select name="event">
+        <option value="BGMI">BGMI</option>
+        <option value="Valorant">Valorant</option>
+        <option value="Efootball">Efootball</option>
+        <option value="Tug of War">Tug of War</option>
+        <option value="Coding Contest">Coding Contest</option>
+        <option value="Robotics">Robotics</option>
+        <option value="Circuitronics">Circuitronics</option>
+        <option value="Coding Treasure Hunt">Coding Treasure Hunt</option>
+      </select>
+      <button type="submit">Submit</button>
+    </form>
+    <div id="response"></div>
+</section>
+
+<a href="/display" class="data-list-btn">
+    <button>View Registrations</button>
+</a>
+
+<script src="../../src/app.js"></script>
+</body>
+</html>
